@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Screen Leaflet Map</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+
+    <script>
+	var geojsonFeature = 
+		{"type":"FeatureCollection","features":
+[
+	{
+		"type":"Feature","properties":
+	{
+	}
+		,"geometry":
+	{
+		"type":"Polygon","coordinates":
+			[
+				[
+					[ -29.051694261999955, 134.809146160000068 ], 
+					[ -29.051679952999962, 134.807568342000081 ]
+				]
+			]
+	}
+	}
+]
+
+	};
+        var map = L.map('map').setView([-34.9281805, 138.5999312], 6);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+            }).addTo(map);
+			// show a marker on the map
+       //     L.marker({lon: 138.599533, lat: -34.927170}).bindPopup('The center of the world').addTo(map);
+	   //     L.marker({lon: 134.7544, lat: -29.0135}).bindPopup('The center of the world').addTo(map);
+			 L.marker({lon: 134.6811297, lat: -29.0076186}).bindPopup('Coober Pedy').addTo(map);
+			L.marker({lon: 129.2431640625, lat: -29.64986867797228}).bindPopup('Top5').addTo(map);
+			L.marker({lon: 132.36328125, lat: -29.343875399418}).bindPopup('Next4').addTo(map);
+			L.marker({lon: 132.1435546875, lat: -31.503629305773018}).bindPopup('Next3').addTo(map);
+			L.marker({lon: 129.2431640625, lat: -31.541089879585808}).bindPopup('Next2').addTo(map);
+			L.marker({lon: 129.2431640625, lat: -29.64986867797228}).bindPopup('Bottom1').addTo(map);
+			 // show the scale bar on the lower left corner
+            L.control.scale({imperial: true, metric: true}).addTo(map);
+			L.geoJSON(geojsonFeature).addTo(map);
+			
+    </script>
+</body>
+</html>
+

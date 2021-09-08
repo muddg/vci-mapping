@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Screen Leaflet Map</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+
+    <script>
+	var geojsonFeature = {
+		"type":"FeatureCollection","features":
+		[
+		{
+			"type":"Feature","properties":
+		{
+		}
+			,"geometry":
+		{
+			"type":"Polygon","coordinates":
+			[
+				[
+					[ -29.051694261999955, 134.809146160000068 ], 
+					[ -29.051679952999962, 134.807568342000081 ], 
+					[ -29.051666858999965, 134.806108240000071 ], 
+					[ -29.051552193999953, 134.793250227000044 ], 
+					[ -29.051440403999948, 134.780847044000097 ], 
+					[ -29.051357486999962, 134.771749231000058 ], 
+					[ -29.051350499999955, 134.770983735000073 ], 
+					[ -29.050998233999962, 134.733120016000044 ], 
+					[ -29.050753293999946, 134.707499141000085 ], 
+					[ -29.02784007899993, 134.707801805000031 ], 
+					[ -29.027823393999938, 134.707796862 ], 
+					[ -29.004933250999954, 134.701015616000063 ], 
+					[ -28.981559446999938, 134.694094383000106 ], 
+					[ -28.97101461099993, 134.735937793000062 ], 
+					[ -28.973407002999977, 134.739481468 ], 
+					[ -28.993546752999976, 134.787285406000024  ], 
+					[-28.996151457999929, 134.793472319000102 ], 
+					[ -28.999082388999966, 134.800435339000046 ], 
+					[ -29.002979623999977, 134.809695739000063 ], 
+					[ -29.051694261999955, 134.809146160000068 ]
+				]
+			]
+		}
+		}
+		]
+		
+		};
+        var map = L.map('map').setView([-34.9281805, 138.5999312], 6);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+            }).addTo(map);
+			// show a marker on the map
+       //     L.marker({lon: 138.599533, lat: -34.927170}).bindPopup('The center of the world').addTo(map);
+	        L.marker({lon: 134.7544, lat: -29.0135}).bindPopup('The center of the world').addTo(map);
+			 // show the scale bar on the lower left corner
+            L.control.scale({imperial: true, metric: true}).addTo(map);
+			L.geoJSON(geojsonFeature).addTo(map);
+			
+    </script>
+</body>
+</html>
+
